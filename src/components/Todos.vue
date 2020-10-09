@@ -1,8 +1,6 @@
 <template>
   <div>
-    <h3>
-      Todos
-    </h3>
+    <h3>Todos</h3>
 
     <div class="todos">
       <div v-for="todo in allTodos" :key="todo.id" class="todo">
@@ -17,9 +15,14 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Todos",
+  methods: {
+    ...mapActions(["fetchTodos"]),
+  },
   computed: {
     ...mapGetters(["allTodos"]),
-    ...mapActions(["fetchTodos"]),
+  },
+  created() {
+    this.fetchTodos();
   },
 };
 </script>
